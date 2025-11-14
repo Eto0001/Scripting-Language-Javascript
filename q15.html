@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Color Choices</title>
+</head>
+<body>
+  <h2>Color Preferences</h2>
+  <pre id="result"></pre>
+
+  <script>
+    const colors = ["Blue", "Green", "Red", "Orange", "Violet", "Indigo", "Yellow"];
+    const suffixes = ["th", "st", "nd", "rd"];
+
+    function getOrdinal(n) {
+      if (n === 1) return suffixes[1];
+      if (n === 2) return suffixes[2];
+      if (n === 3) return suffixes[3];
+      return suffixes[0];
+    }
+
+    let output = "";
+    for (let i = 0; i < colors.length; i++) {
+      const position = i + 1;
+      const suffix = getOrdinal(position);
+      output += `${position}${suffix} choice is ${colors[i]}.\n`;
+    }
+
+    document.getElementById("result").textContent = output;
+  </script>
+</body>
+</html>

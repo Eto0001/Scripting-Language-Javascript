@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Current Date Formats</title>
+</head>
+<body>
+  <h2>Current Date in Various Formats</h2>
+  <p id="output"></p>
+
+  <script>
+    function formatDate() {
+      const today = new Date();
+      const dd = String(today.getDate()).padStart(2, '0');
+      const mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0
+      const yyyy = today.getFullYear();
+
+      const monthNames = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+      ];
+      const dayNames = [
+        "Sunday", "Monday", "Tuesday", "Wednesday",
+        "Thursday", "Friday", "Saturday"
+      ];
+
+      const formattedDates = [
+        `mm-dd-yyyy: ${mm}-${dd}-${yyyy}`,
+        `mm/dd/yyyy: ${mm}/${dd}/${yyyy}`,
+        `dd-mm-yyyy: ${dd}-${mm}-${yyyy}`,
+        `dd/mm/yyyy: ${dd}/${mm}/${yyyy}`,
+        `yyyy month date day: ${yyyy} ${monthNames[today.getMonth()]} ${dd} ${dayNames[today.getDay()]}`
+      ];
+
+      document.getElementById("output").innerText = formattedDates.join('\n');
+    }
+
+    formatDate();
+  </script>
+</body>
+</html>

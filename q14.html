@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sort Array</title>
+</head>
+<body>
+  <h2>Sort Integers in Ascending Order</h2>
+  <form onsubmit="event.preventDefault(); sortArray();">
+    <label>Enter integers (comma-separated):</label><br>
+    <input type="text" id="arrayInput" placeholder="e.g. 3, 8, 7, 6, 5, -4, 3, 2, 1"><br><br>
+    <input type="submit" value="Sort">
+  </form>
+
+  <p id="result"></p>
+
+  <script>
+    function sortArray() {
+      const input = document.getElementById("arrayInput").value;
+      const arr = input.split(',').map(n => parseInt(n.trim(), 10));
+
+      if (arr.some(isNaN)) {
+        document.getElementById("result").textContent = "Please enter valid integers separated by commas.";
+        return;
+      }
+
+      const sorted = arr.sort((a, b) => a - b);
+      document.getElementById("result").textContent = "Sorted Array: " + sorted.join(',');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Days Between Dates</title>
+</head>
+<body>
+  <h2>Calculate Days Between Two Dates</h2>
+  <form onsubmit="event.preventDefault(); getDaysBetween();">
+    <label for="date1">Start Date:</label><br>
+    <input type="date" id="date1" required><br><br>
+
+    <label for="date2">End Date:</label><br>
+    <input type="date" id="date2" required><br><br>
+
+    <input type="submit" value="Calculate Days">
+  </form>
+
+  <p id="result"></p>
+
+  <script>
+    function getDaysBetween() {
+      const date1 = new Date(document.getElementById("date1").value);
+      const date2 = new Date(document.getElementById("date2").value);
+
+      if (isNaN(date1) || isNaN(date2)) {
+        document.getElementById("result").textContent = "Please enter valid dates.";
+        return;
+      }
+
+      const diffInMs = Math.abs(date2 - date1);
+      const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
+
+      document.getElementById("result").textContent = `Difference: ${diffInDays} day(s)`;
+    }
+  </script>
+</body>
+</html>

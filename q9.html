@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Compare Three Numbers</title>
+</head>
+<body>
+  <h2>Compare Three Integers</h2>
+  <form onsubmit="event.preventDefault(); compareThree();">
+    <label>First Number:</label><br>
+    <input type="number" id="num1"><br><br>
+
+    <label>Second Number:</label><br>
+    <input type="number" id="num2"><br><br>
+
+    <label>Third Number:</label><br>
+    <input type="number" id="num3"><br><br>
+
+    <input type="submit" value="Compare">
+  </form>
+
+  <p id="result"></p>
+
+  <script>
+    function compareThree() {
+      var num1 = parseInt(document.getElementById("num1").value);
+      var num2 = parseInt(document.getElementById("num2").value);
+      var num3 = parseInt(document.getElementById("num3").value);
+
+      if (isNaN(num1) || isNaN(num2) || isNaN(num3)) {
+        document.getElementById("result").textContent = "Please enter all three valid integers.";
+        return;
+      }
+
+      var largest = Math.max(num1, num2, num3);
+      var smallest = Math.min(num1, num2, num3);
+
+      document.getElementById("result").textContent =
+        "Largest Number: " + largest + "\nSmallest Number: " + smallest;
+    }
+  </script>
+</body>
+</html>

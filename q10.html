@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Find Largest Number</title>
+</head>
+<body>
+  <h2>Enter Integers to Find the Largest</h2>
+  <form onsubmit="event.preventDefault(); findLargest();">
+    <label>Enter integers (comma-separated):</label><br>
+    <input type="text" id="numbersInput" placeholder="e.g. 12, 45, 7, 89"><br><br>
+    <input type="submit" value="Find Largest">
+  </form>
+
+  <p id="result"></p>
+
+  <script>
+    function findLargest() {
+      var input = document.getElementById("numbersInput").value;
+      var numArray = input.split(',').map(n => parseInt(n.trim(), 10));
+
+      if (numArray.some(isNaN)) {
+        document.getElementById("result").textContent = "Please enter valid integers separated by commas.";
+        return;
+      }
+
+      var largest = Math.max(...numArray);
+      document.getElementById("result").textContent = "Largest Number: " + largest;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Basic Calculator</title>
+</head>
+<body>
+  <h2>Basic Arithmetic Operations</h2>
+  <form onsubmit="event.preventDefault(); calculate();">
+    <label>First Number:</label><br>
+    <input type="number" id="num1"><br><br>
+
+    <label>Second Number:</label><br>
+    <input type="number" id="num2"><br><br>
+
+    <input type="submit" value="Calculate">
+  </form>
+
+  <p id="result"></p>
+
+  <script>
+    function calculate() {
+      var num1 = parseFloat(document.getElementById("num1").value);
+      var num2 = parseFloat(document.getElementById("num2").value);
+
+      if (isNaN(num1) || isNaN(num2)) {
+        document.getElementById("result").textContent = "Please enter valid numbers.";
+        return;
+      }
+
+      var addition = num1 + num2;
+      var subtraction = num1 - num2;
+      var multiplication = num1 * num2;
+      var division = num2 !== 0 ? num1 / num2 : "undefined (division by zero)";
+
+      var output = 
+        "Addition: " + addition + "\n" +
+        "Subtraction: " + subtraction + "\n" +
+        "Multiplication: " + multiplication + "\n" +
+        "Division: " + division;
+
+      document.getElementById("result").textContent = output;
+    }
+  </script>
+</body>
+</html>

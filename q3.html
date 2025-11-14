@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vowel Counter</title>
+</head>
+<body>
+  <h2>Vowel Count</h2>
+  <p id="result"></p>
+
+  <script>
+    var str = "webmaster";
+
+    function countVowels(s) {
+      var matches = s.toLowerCase().match(/[aeiou]/g);
+      return matches ? matches.length : 0;
+    }
+
+    var count = countVowels(str);
+    document.getElementById("result").textContent = "String: " + str + "\nVowel Count: " + count;
+  </script>
+</body>
+</html>

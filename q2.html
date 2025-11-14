@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Alphabetical Order</title>
+</head>
+<body>
+  <h2>Alphabetical Order of Letters</h2>
+  <p id="result"></p>
+
+  <script>
+    var str = "webmaster";
+
+    function alphabetOrder(s) {
+      return s.split('').sort().join('');
+    }
+
+    var sorted = alphabetOrder(str);
+    document.getElementById("result").textContent = "String: " + str + "\nAlphabetical Order: " + sorted;
+  </script>
+</body>
+</html>
