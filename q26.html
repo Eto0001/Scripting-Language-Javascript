@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ten Most Frequent Words</title>
+</head>
+<body>
+  <h2>Find Ten Most Frequent Words</h2>
+  <form onsubmit="event.preventDefault(); tenMostFrequentWords();">
+    <label for="textInput">Enter your text:</label><br>
+    <textarea id="textInput" rows="6" cols="50" placeholder="Type or paste your text here..."></textarea><br><br>
+    <input type="submit" value="Analyze">
+  </form>
+
+  <h3>Top 10 Words:</h3>
+  <ol id="result"></ol>
+
+  <script>
+    function tenMostFrequentWords() {
+      const text = document.getElementById("textInput").value.toLowerCase();
+      const words = text.match(/\b\w+\b/g);
+
+      if (!words) {
+        document.getElementById("result").innerHTML = "<li>No words found.</li>";
+        return;
+      }
+
+      const frequencyMap = {};
+
+      words.forEach(word => {
+        frequencyMap[word] = (frequencyMap[word] || 0) + 1;
+      });
+
+      const sortedWords = Object.entries(frequencyMap)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 10);
+
+      const resultList = document.getElementById("result");
+      resultList.innerHTML = "";
+
+      sortedWords.forEach(([word, count]) => {
+        const li = document.createElement("li");
+        li.textContent = `${word} (${count} times)`;
+        resultList.appendChild(li);
+      });
+    }
+  </script>
+</body>
+</html>

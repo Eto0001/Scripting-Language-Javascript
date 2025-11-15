@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Remove Characters from String</title>
+</head>
+<body>
+  <h2>Remove Characters from a String</h2>
+  <form onsubmit="event.preventDefault(); removeCharacters();">
+    <label for="inputString">Enter a string:</label><br>
+    <input type="text" id="inputString" placeholder="Type your string here"><br><br>
+
+    <label for="charCount">Number of characters to remove:</label><br>
+    <input type="number" id="charCount" min="0"><br><br>
+
+    <input type="submit" value="Remove">
+  </form>
+
+  <p id="result"></p>
+
+  <script>
+    function removeChars(str, count) {
+      if (typeof str !== "string" || typeof count !== "number" || count < 0) {
+        return "Invalid input.";
+      }
+      return str.substring(count);
+    }
+
+    function removeCharacters() {
+      const str = document.getElementById("inputString").value;
+      const count = parseInt(document.getElementById("charCount").value, 10);
+
+      const result = removeChars(str, count);
+      document.getElementById("result").textContent = "Result: " + result;
+    }
+  </script>
+</body>
+</html>

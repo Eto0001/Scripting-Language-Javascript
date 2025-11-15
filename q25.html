@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Person Account Manager</title>
+</head>
+<body>
+  <h2>Person Account</h2>
+
+  <form onsubmit="event.preventDefault(); updateAccount();">
+    <label>First Name:</label><br>
+    <input type="text" id="firstName"><br><br>
+
+    <label>Last Name:</label><br>
+    <input type="text" id="lastName"><br><br>
+
+    <label>Income Amount:</label><br>
+    <input type="number" id="incomeAmount">
+    <input type="text" id="incomeDesc" placeholder="Income description"><br><br>
+
+    <label>Expense Amount:</label><br>
+    <input type="number" id="expenseAmount">
+    <input type="text" id="expenseDesc" placeholder="Expense description"><br><br>
+
+    <input type="submit" value="Update Account">
+  </form>
+
+  <pre id="result"></pre>
+
+  <script>
+    const personAccount = {
+      firstName: "",
+      lastName: "",
+      incomes: [],
+      expenses: [],
+
+      totalIncome() {
+        return this.incomes.reduce((sum, item) => sum + item.amount, 0);
+      },
+
+      totalExpense() {
+        return this.expenses.reduce((sum, item) => sum + item.amount, 0);
+      },
+
+      accountBalance() {
+        return this.totalIncome() - this.totalExpense();
+      },
+
+      accountInfo() {
+        return `${this.firstName} ${this.lastName} has a balance of ₹${this.accountBalance()}.`;
+      },
+
+      addIncome(amount, description) {
+        this.incomes.push({ amount, description });
+      },
+
+      addExpense(amount, description) {
+        this.expenses.push({ amount, description });
+      }
+    };
+
+    function updateAccount() {
+      personAccount.firstName = document.getElementById("firstName").value;
+      personAccount.lastName = document.getElementById("lastName").value;
+
+      const incomeAmount = parseFloat(document.getElementById("incomeAmount").value);
+      const incomeDesc = document.getElementById("incomeDesc").value;
+      if (!isNaN(incomeAmount) && incomeDesc) {
+        personAccount.addIncome(incomeAmount, incomeDesc);
+      }
+
+      const expenseAmount = parseFloat(document.getElementById("expenseAmount").value);
+      const expenseDesc = document.getElementById("expenseDesc").value;
+      if (!isNaN(expenseAmount) && expenseDesc) {
+        personAccount.addExpense(expenseAmount, expenseDesc);
+      }
+
+      let output = personAccount.accountInfo() + "\n\n";
+      output += "Incomes:\n";
+      personAccount.incomes.forEach(i => {
+        output += `+ ₹${i.amount} (${i.description})\n`;
+      });
+
+      output += "\nExpenses:\n";
+      personAccount.expenses.forEach(e => {
+        output += `- ₹${e.amount} (${e.description})\n`;
+      });
+
+      document.getElementById("result").textContent = output;
+    }
+  </script>
+</body>
+</html>

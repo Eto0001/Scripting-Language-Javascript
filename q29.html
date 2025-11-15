@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Number Highlighter</title>
+  <style>
+    #numberContainer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px;
+    }
+    .number-box {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: bold;
+      color: white;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Numbers from 0 to 100</h2>
+  <div id="numberContainer"></div>
+
+  <script>
+    function isPrime(num) {
+      if (num < 2) return false;
+      for (let i = 2; i <= Math.sqrt(num); i++) {
+        if (num % i === 0) return false;
+      }
+      return true;
+    }
+
+    const container = document.getElementById("numberContainer");
+
+    for (let i = 0; i <= 100; i++) {
+      const box = document.createElement("div");
+      box.textContent = i;
+      box.classList.add("number-box");
+
+      if (isPrime(i)) {
+        box.style.backgroundColor = "red";
+      } else if (i % 2 === 0) {
+        box.style.backgroundColor = "green";
+      } else {
+        box.style.backgroundColor = "yellow";
+        box.style.color = "black";
+      }
+
+      container.appendChild(box);
+    }
+  </script>
+</body>
+</html>

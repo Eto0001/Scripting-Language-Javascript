@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Countries Table</title>
+  <style>
+    table {
+      width: 80%;
+      margin: 20px auto;
+      border-collapse: collapse;
+      font-family: Arial, sans-serif;
+    }
+    td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+      font-weight: bold;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+  </style>
+</head>
+<body>
+  <h2 style="text-align:center;">Top 50 Countries</h2>
+  <table id="countriesTable"></table>
+
+  <script>
+    const countries = [
+      "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda",
+      "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas",
+      "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize",
+      "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil",
+      "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia",
+      "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China",
+      "Colombia", "Comoros", "Congo", "Costa Rica", "Croatia", "Cuba",
+      "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic",
+      "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia"
+    ];
+
+    const table = document.getElementById("countriesTable");
+
+    for (let i = 0; i < 50; i += 6) {
+      const row = document.createElement("tr");
+
+      for (let j = i; j < i + 6 && j < 50; j++) {
+        const cell = document.createElement("td");
+        cell.textContent = countries[j];
+        row.appendChild(cell);
+      }
+
+      table.appendChild(row);
+    }
+  </script>
+</body>
+</html>

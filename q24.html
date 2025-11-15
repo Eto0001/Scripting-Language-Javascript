@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dog Object Builder</title>
+</head>
+<body>
+  <h2>Create Your Dog Object</h2>
+  <form onsubmit="event.preventDefault(); buildDog();">
+    <label>Name:</label><br>
+    <input type="text" id="name"><br><br>
+
+    <label>Legs:</label><br>
+    <input type="number" id="legs"><br><br>
+
+    <label>Color:</label><br>
+    <input type="text" id="color"><br><br>
+
+    <label>Age:</label><br>
+    <input type="number" id="age"><br><br>
+
+    <label>Breed:</label><br>
+    <input type="text" id="breed"><br><br>
+
+    <input type="submit" value="Create Dog">
+  </form>
+
+  <pre id="result"></pre>
+
+  <script>
+    function buildDog() {
+      const dog = {};
+
+      dog.name = document.getElementById("name").value;
+      dog.legs = parseInt(document.getElementById("legs").value, 10);
+      dog.color = document.getElementById("color").value;
+      dog.age = parseInt(document.getElementById("age").value, 10);
+      dog.bark = function() {
+        return "woof woof";
+      };
+      dog.breed = document.getElementById("breed").value;
+      dog.getDogInfo = function() {
+        return `${this.name} is a ${this.color} ${this.breed}, ${this.age} years old, with ${this.legs} legs.`;
+      };
+
+      let output = `Dog Object:\n`;
+      output += `Name: ${dog.name}\n`;
+      output += `Legs: ${dog.legs}\n`;
+      output += `Color: ${dog.color}\n`;
+      output += `Age: ${dog.age}\n`;
+      output += `Breed: ${dog.breed}\n`;
+      output += `Bark: ${dog.bark()}\n`;
+      output += `Info: ${dog.getDogInfo()}`;
+
+      document.getElementById("result").textContent = output;
+    }
+  </script>
+</body>
+</html>

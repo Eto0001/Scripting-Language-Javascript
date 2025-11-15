@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blank String Checker</title>
+</head>
+<body>
+  <h2>Check if a String is Blank</h2>
+  <form onsubmit="event.preventDefault(); checkBlank();">
+    <label for="userInput">Enter a string:</label><br>
+    <input type="text" id="userInput" placeholder="Type something..."><br><br>
+    <input type="submit" value="Check">
+  </form>
+
+  <p id="result"></p>
+
+  <script>
+    function isBlank(str) {
+      return !str || str.trim().length === 0;
+    }
+
+    function checkBlank() {
+      const input = document.getElementById("userInput").value;
+      const result = isBlank(input)
+        ? "The input is blank."
+        : "The input is not blank.";
+      document.getElementById("result").textContent = result;
+    }
+  </script>
+</body>
+</html>

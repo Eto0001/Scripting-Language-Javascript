@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Weekend Date Finder</title>
+</head>
+<body>
+  <h2>Find Upcoming Weekend Dates</h2>
+  <form onsubmit="event.preventDefault(); showWeekendDates();">
+    <label for="startDate">Select a starting date:</label><br>
+    <input type="date" id="startDate"><br><br>
+    <input type="submit" value="Get Weekend Dates">
+  </form>
+
+  <p id="result"></p>
+
+  <script>
+    function getWeekendDates(fromDate = new Date()) {
+      const day = fromDate.getDay();
+
+      const daysUntilSaturday = (6 - day + 7) % 7;
+      const daysUntilSunday = (7 - day + 7) % 7;
+
+      const nextSaturday = new Date(fromDate);
+      nextSaturday.setDate(fromDate.getDate() + daysUntilSaturday);
+
+      const nextSunday = new Date(fromDate);
+      nextSunday.setDate(fromDate.getDate() + daysUntilSunday);
+
+      return {
+        saturday: nextSaturday.toDateString(),
+        sunday: nextSunday.toDateString()
+      };
+    }
+
+    function showWeekendDates() {
+      const input = document.getElementById("startDate").value;
+      const fromDate = input ? new Date(input) : new Date();
+
+      if (isNaN(fromDate)) {
+        document.getElementById("result").textContent = "Please select a valid date.";
+        return;
+      }
+
+      const weekend = getWeekendDates(fromDate);
+      document.getElementById("result").textContent =
+        `Next Saturday: ${weekend.saturday}\nNext Sunday: ${weekend.sunday}`;
+    }
+  </script>
+</body>
+</html>
